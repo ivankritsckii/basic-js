@@ -9,12 +9,14 @@ const chainMaker = {
   getLength() {
     let a= res
     res=''
+    a = a.split('~~')
     return a.length
     //throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   },
   addLink(value) {
-    if(value==undefined){value=''}
+    if(value===undefined){value=''}
+    if(value===null){value='null'}
     if(res.length==0){res='( ' + value+ ' )'}
     else{res=res +'~~' + '( ' + value+ ' )'}
     return this
@@ -25,8 +27,8 @@ const chainMaker = {
     let arr=res.split('~~')
     if(position!==Math.floor(position)||position>arr.length||position<1){
       res=''
-      let ErorMassage=new Error('You can\'t remove incorrect link!')
-      return ErorMassage}
+      throw new Error('You can\'t remove incorrect link!')
+      }
       else{
     arr.splice(position-1, 1)
     res=arr.join('~~')

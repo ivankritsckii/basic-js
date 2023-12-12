@@ -14,18 +14,24 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function transform(arr) {
-  /*if(!Array.isArray(arr)){return "'arr' parameter must be an instance of the Array!"}
-  let resArr=arr
+  if(!Array.isArray(arr)){throw new Error("'arr' parameter must be an instance of the Array!")}
+  let resArr=arr.map((item) => item);
   let discardNext=(array, index)=>{
-    if(array.length>=index+1){array.splice(index, 2)}
+    if(array.length>=index+1){
+      array[index]='splice Me';
+      array[index+1]='splice Me';
+  }
     else{array.splice(index, 1)}
   }
   let discardPrev=(array, index)=>{
-    if(index!=0){array.splice(index-1, 2)}
+    if(index!=0){
+      array[index]='splice Me';
+      array[index-1]='splice Me';
+  }
     else{array.splice(index, 1)}
   }
   let doubleNext=(array, index)=>{
-    if(array.length>=index+1){array.splice(index, 1, array[index+1])}
+    if(array.length>index+1){array.splice(index, 1, array[index+1])}
     else{array.splice(index, 1)}
   }
   let doublePrev=(array, index)=>{
@@ -46,11 +52,7 @@ for(let i =0; i<arr.length; i++){
     doublePrev(resArr, i)
   }
 }
-return resArr*/
-
-
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+return resArr.filter(item => item !== 'splice Me')
 }
 
 module.exports = {
